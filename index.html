@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Marcador de Amistosos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background-color: #f0f2f5;
+    }
+    h1 {
+      color: #333;
+    }
+    form {
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+    }
+    select, input {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.3rem;
+    }
+    button {
+      margin-top: 1rem;
+      padding: 0.7rem 1rem;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      background: #fff;
+      margin-bottom: 0.5rem;
+      padding: 0.8rem;
+      border-radius: 6px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <h1>Marcador de Jogos Amistosos</h1>
+
+  <form id="formAmistoso">
+    <label for="time1">Time 1:</label>
+    <select id="time1">
+      <option value="">Selecione</option>
+      <option value="Time A">Time A</option>
+      <option value="Time B">Time B</option>
+      <option value="Time C">Time C</option>
+    </select>
+
+    <label for="time2">Time 2:</label>
+    <select id="time2">
+      <option value="">Selecione</option>
+      <option value="Time A">Time A</option>
+      <option value="Time B">Time B</option>
+      <option value="Time C">Time C</option>
+    </select>
+
+    <label for="data">Data:</label>
+    <input type="date" id="data">
+
+    <label for="hora">Hora:</label>
+    <input type="time" id="hora">
+
+    <button type="submit">Marcar Amistoso</button>
+  </form>
+
+  <h2>Jogos Marcados</h2>
+  <ul id="listaJogos"></ul>
+
+  <script>
+    const form = document.getElementById('formAmistoso');
+    const listaJogos = document.getElementById('listaJogos');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const time1 = document.getElementById('time1').value;
+      const time2 = document.getElementById('time2').value;
+      const data = document.getElementById('data').value;
+      const hora = document.getElementById('hora').value;
+
+      if (!time1 || !time2 || !data || !hora) {
+        alert("Preencha todos os campos!");
+        return;
+      }
+
+      if (time1 === time2) {
+        alert("Os times devem ser diferentes!");
+        return;
+      }
+
+      const item = document.createElement('li');
+      item.textContent = `${time1} x ${time2} - ${data} às ${hora}`;
+      listaJogos.appendChild(item);
+
+      form.reset();
+    });
+  </script>
+</body>
+</html>
